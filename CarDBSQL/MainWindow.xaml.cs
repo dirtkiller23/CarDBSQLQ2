@@ -16,54 +16,25 @@ using System.Windows.Shapes;
 namespace CarDBSQL
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        CarDriverDBEntities context;
-        static int counter = 0;
-
         public MainWindow()
         {
             InitializeComponent();
-            context = new CarDriverDBEntities();
-           
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ShowViolations(object sender,RoutedEventArgs e)
         {
-           
-            counter++;
-            int numDriverDocument = Convert.ToInt32(login.Text);
-            string pass = password.Text;
-            
-            Driver driver = context.Driver.ToList().Find(x => x.numDriverDocument == numDriverDocument);
-            if (counter >= 3)
-            {
-                login.IsEnabled = false;
-                login.Text = "";
-                password.IsEnabled = false;
-                password.Text = "";
-                LoginButton.IsEnabled = false;
-                MessageBox.Show("Превышено количество попыток(3)", "Критическая Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
-
-            }
-            if (driver == null)
-            {
-                MessageBox.Show("Данного водителя не существует!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
-            
-            }
-            else
-            {
-                if (driver.password.Equals(pass))
-                {
-                    MessageBox.Show("Вход выполнен!", "Успешно!", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Пароли не совпадают", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-                } 
-            }
+            NewFrame.Navigate(new ViolationPage()); 
         }
+        private void ShowDrivers(object sender, RoutedEventArgs e)
+        {
+            NewFrame.Navigate(new DriversPage());
+        }
+        private void ShowCars(object sender,RoutedEventArgs e)
+        {
+            NewFrame.Navigate(new CarPage());
+        }
+    }
+}

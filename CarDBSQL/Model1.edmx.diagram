@@ -4,15 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="03177c6e1f824dada72e5787231c94be" Name="Diagram1" ZoomLevel="106">
+      <Diagram DiagramId="65f2bfdcab8d4dd0a51d6c055aa06461" Name="Diagram1">
         <EntityTypeShape EntityType="CarDriverDBModel.Car" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CarDriverDBModel.Driver" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CarDriverDBModel.DriversCars" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CarDriverDBModel.Incident" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CarDriverDBModel.IncidentsVolations" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CarDriverDBModel.Inspector" Width="1.5" PointX="3.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarDriverDBModel.MarkAll" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CarDriverDBModel.State" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarDriverDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarDriverDBModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CarDriverDBModel.Violation" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
         <AssociationConnector Association="CarDriverDBModel.FK_DriversCars_Car" ManuallyRouted="false" />
         <AssociationConnector Association="CarDriverDBModel.FK_Incident_Car" ManuallyRouted="false" />

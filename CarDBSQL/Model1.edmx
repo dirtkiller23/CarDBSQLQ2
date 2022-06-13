@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище CarDriverDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CarDriverDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Car">
           <Key>
             <PropertyRef Name="StateNumber" />
@@ -65,6 +65,13 @@
           <Property Name="tabNum" Type="bigint" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="MarkAll">
+          <Key>
+            <PropertyRef Name="MarkID" />
+          </Key>
+          <Property Name="MarkID" Type="bigint" Nullable="false" />
+          <Property Name="MarkTitle" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -188,13 +195,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище CarDriverDBModelContainer">
+        <EntityContainer Name="CarDriverDBModelStoreContainer">
           <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Driver" EntityType="Self.Driver" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DriversCars" EntityType="Self.DriversCars" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Incident" EntityType="Self.Incident" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IncidentsVolations" EntityType="Self.IncidentsVolations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inspector" EntityType="Self.Inspector" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MarkAll" EntityType="Self.MarkAll" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Violation" EntityType="Self.Violation" Schema="dbo" store:Type="Tables" />
@@ -310,6 +318,13 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Incident" Relationship="Self.FK_Incident_Inspector" FromRole="Inspector" ToRole="Incident" />
+        </EntityType>
+        <EntityType Name="MarkAll">
+          <Key>
+            <PropertyRef Name="MarkID" />
+          </Key>
+          <Property Name="MarkID" Type="Int64" Nullable="false" />
+          <Property Name="MarkTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -435,13 +450,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CarDriverDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CarDriverDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Car" EntityType="Self.Car" />
           <EntitySet Name="Driver" EntityType="Self.Driver" />
           <EntitySet Name="DriversCars" EntityType="Self.DriversCars" />
           <EntitySet Name="Incident" EntityType="Self.Incident" />
           <EntitySet Name="IncidentsVolations" EntityType="Self.IncidentsVolations" />
           <EntitySet Name="Inspector" EntityType="Self.Inspector" />
+          <EntitySet Name="MarkAll" EntityType="Self.MarkAll" />
           <EntitySet Name="State" EntityType="Self.State" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Violation" EntityType="Self.Violation" />
@@ -483,7 +499,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище CarDriverDBModelContainer" CdmEntityContainer="CarDriverDBEntities">
+        <EntityContainerMapping StorageEntityContainer="CarDriverDBModelStoreContainer" CdmEntityContainer="CarDriverDBEntities1">
           <EntitySetMapping Name="Car">
             <EntityTypeMapping TypeName="CarDriverDBModel.Car">
               <MappingFragment StoreEntitySet="Car">
@@ -549,6 +565,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MarkAll">
+            <EntityTypeMapping TypeName="CarDriverDBModel.MarkAll">
+              <MappingFragment StoreEntitySet="MarkAll">
+                <ScalarProperty Name="MarkID" ColumnName="MarkID" />
+                <ScalarProperty Name="MarkTitle" ColumnName="MarkTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="State">
             <EntityTypeMapping TypeName="CarDriverDBModel.State">
               <MappingFragment StoreEntitySet="State">
@@ -595,7 +619,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

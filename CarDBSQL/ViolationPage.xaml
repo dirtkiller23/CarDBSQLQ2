@@ -1,0 +1,35 @@
+﻿<Page x:Class="CarDBSQL.ViolationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarDBSQL"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ViolationPage">
+
+    <Grid>
+        <Grid Background="Aquamarine">
+
+        </Grid>
+        <Label Content="Нарушения" HorizontalAlignment="Left" FontSize="20" FontFamily="Bookman Old Style" Width="270" Grid.Column="1" Margin="132,0,0,0"/>
+        <Label Content="Введите наименование:" VerticalAlignment="Top" FontFamily="Bookman Old Style" Margin="10,50,304,0" Grid.Column="1"/>
+        <TextBox x:Name="numViolationBox" VerticalAlignment="Top" Margin="14,79,333,0" Grid.Column="1" TextChanged="ChangeTitle"/>
+        <Button Content="Добавить" Name="AddButton" Click="AddViolPage" HorizontalAlignment="Left" Margin="496,62,0,0" VerticalAlignment="Top" Height="35" Width="69"/>
+        <DataGrid AutoGenerateColumns="False" Grid.Column="1" Margin="10,118,27,45" Name="violationstable">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID нарушения" Width="*" Binding="{Binding id}"/>
+                <DataGridTextColumn Header="Нарушение" Width="*" Binding="{Binding title}"/>
+                <DataGridTextColumn Header="Доля штрафа" Width="*" Binding="{Binding penaltyRange}"/>
+                <DataGridTextColumn Header="Лишение прав" Width="*" Binding="{Binding deprivationLicense}"/>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Редактировать" Click="EditViolPage"/>
+                    <MenuItem Header="Удалить" Click="DeleteViolPage"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        <Frame Grid.Column="1" x:Name="NewFrameEdit" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Page>

@@ -12,15 +12,15 @@ namespace CarDBSQL
     using System;
     using System.Collections.Generic;
     
-    public partial class IncidentsVolations
+    public partial class MarkAll
     {
-        public long idIncident { get; set; }
-        public long idVolation { get; set; }
-        public decimal penalty { get; set; }
-        public long statePenalty { get; set; }
-    
-        public virtual Incident Incident { get; set; }
-        public virtual State State { get; set; }
-        public virtual Violation Violation { get; set; }
+        public MarkAll()
+        {
+            this.Car = new HashSet<Car>();
+        }
+        public long MarkID { get; set; }
+        public string MarkTitle { get; set; }
+
+        public virtual ICollection<Car> Car { get; set; }
     }
 }
